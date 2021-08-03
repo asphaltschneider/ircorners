@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- Every supported iracing road track should be predefined in here -->
 <all_tracks>
-    <track id="999">
-        <name>Example Track 1</name>
-        <layout>Short</layout>
-    </track>
+    <track id="999" name="Example Track 1" layout="Short"/>
 </all_tracks>
