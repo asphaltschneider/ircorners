@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<all_tracks>
+    <track id="999">
+        <name>Example Track 1</name>
+        <layout>Short</layout>
+    </track>
+</all_tracks>
