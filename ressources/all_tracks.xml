@@ -3,4 +3,6 @@
 <all_tracks>
     <track id="999" name="Example Track 1" layout="Short"/>
     <track id="352" name="Lime Rock Park" layout="Classic"/>
+    <track id="9" name="Summit Point Raceway" layout=""/>
+    <track id="159" name="Summit Point Raceway School" layout=""/>
 </all_tracks>

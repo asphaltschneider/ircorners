@@ -1,35 +1,27 @@
+from pynput import keyboard
 import irsdk
 import logging
 import yaml
 import os
 import time
 from threading import Thread
-from flask import Flask, render_template, jsonify
-import untangle
 
-#import asyncio
-#import datetime
-#import random
-#import websockets
-#from aiohttp import web
-#import aiohttp_jinja2
-
-SCRIPTNAME = "iRcorners"
+SCRIPTNAME = "trackbuilder"
 CONFIG_FILE = "ircorners.cfg"
-
-app = Flask(__name__)
-
 
 class State:
     ir_connected = False
     current_track_id = -1
     current_track_name = ""
-    current_track_layout = ""
     current_corner = ""
     corner_list = []
     all_track_ids = []
-
-
+    cur_pct = 0
+    cur_starts_at = 0
+    cur_ends_at = 0
+    cur_turn_number = 0
+    all_turns_list = []
+    info_displayed = 0
 
 # initate everything we need for thread safe logging to stdout
 logger = logging.getLogger(SCRIPTNAME)
@@ -70,11 +62,13 @@ def check_iracing():
         state.last_car_setup_tick = -1
         # we are shutting down ir library (clearing all internal variables)
         ir.shutdown()
+        state.info_displayed = 0
         logger.info('iRacing - irsdk disconnected')
 
     elif not state.ir_connected and ir.startup() and ir.is_initialized and ir.is_connected:
         state.ir_connected = True
         logger.info('iRacing - irsdk connected')
+
 
 def iracingworker(stop):
     logger.info("iRacingWorker - Thread starts")
@@ -96,7 +90,12 @@ def iracingworker(stop):
             ir.freeze_var_buffer_latest()
             if ir["WeekendInfo"]["TrackID"] != state.current_track_id:
                 state.current_track_id = ir["WeekendInfo"]["TrackID"]
-            logger.info("TrackID: %s - Corner: '%s' - Dist: %s - Percent: %s" % (ir["WeekendInfo"]["TrackID"], state.current_corner, ir["LapDist"], float(ir["LapDistPct"])))
+                state.current_track_name = ir["WeekendInfo"]["TrackName"]
+                if state.info_displayed == 0:
+                    logger.info("TrackID: %s Track: %s" % (state.current_track_id, state.current_track_name, ))
+                    state.info_displayed = 1
+            #logger.info("TrackID: %s - Corner: '%s' - Dist: %s - Percent: %s" % (ir["WeekendInfo"]["TrackID"], state.current_corner, ir["LapDist"], float(ir["LapDistPct"])))
+            state.cur_pct = float(ir["LapDistPct"])
             found = 0
             #print(state.corner_list)
             for i in state.corner_list:
@@ -111,74 +110,37 @@ def iracingworker(stop):
     logger.info("iRacingWorker - Thread ends")
 
 
-def startWebServer():
-    logger.info("WebServerWorker - Thread starts")
-    logger.info("WebServerWorker - Bind to IP: %s and Port: %s" % (config["HTTP_IP"], config["HTTP_PORT"], ))
-    app.run(host=config["HTTP_IP"], port=config["HTTP_PORT"])
-    logger.info("WebServerWorker - Thread ends")
+def on_press(key):
+    if key == keyboard.Key.esc:
+        return False  # stop listener
+    try:
+        k = key.char  # single-char keys
+    except:
+        k = key.name  # other keys
 
+    if k in ['1', '2', '3']:  # keys of interest
+        # self.keys.append(k)  # store it in global-like variable
+        #print('Key pressed: %s at %s' % (k, state.cur_pct))
 
-def webserverworker(stop):
-    logger.info("WebServerWorker - Thread starts")
-    logger.info("WebServerWorker - Bind to IP: %s and Port: %s" % (config["HTTP_IP"], config["HTTP_PORT"], ))
-    if config["HTTP_ENABLED"] == True:
-        while not stop():
-            logger.info("WebServerWorker - still running....")
-            time.sleep(10)
-    else:
-        logger.info("WebServerWorker - configured to be disabled. Finish Thread...")
-    logger.info("WebServerWorker - Thread ends")
-
-def xmlreaderworker(stop):
-    logger.info("XMLReaderThread - Thread starts")
-    logger.info("XMLReaderThread - Reading all_tracks.xml")
-    all_tracks = untangle.parse('../ressources/all_tracks.xml')
-    # print(all_tracks.all_tracks.track)
-    all_track_ids = []
-    for i in all_tracks.all_tracks.track:
-        all_track_ids.append(int(i["id"]))
-        logger.info("id: %s name: %s layout: %s" % (i["id"], i["name"], i["layout"], ))
-    state.all_track_ids = all_track_ids
-    lasttrackid = state.current_track_id
-    while not stop():
-        if state.current_track_id != lasttrackid:
-            logger.info("XMLReaderThread - The trackID changed. Is there a XML for trackID %s ?" % (state.current_track_id, ))
-            if state.current_track_id in all_track_ids:
-                logger.info("XMLReaderThread - Yes! ID %s is supported. Loading the XML..." % (state.current_track_id))
-                filename = str(state.current_track_id) + ".xml"
-                print("XML: %s" % (filename,))
-                current_track = untangle.parse('../ressources/' + filename)
-                print(current_track.track.turn)
-                turn_dict = {}
-                turn_list =[]
-                for i in current_track.track.turn:
-                    print(i)
-                    turn_dict['starts_at'] = i['starts_at']
-                    turn_dict['ends_at'] = i['ends_at']
-                    turn_dict['name'] = i['name']
-                    turn_list.append(turn_dict)
-                    turn_dict = {}
-                state.corner_list = turn_list
-
-
-            else:
-                logger.info("XMLReaderThread - No! ID %s is not yet supported." % (state.current_track_id))
-        lasttrackid = int(state.current_track_id)
-        logger.info("XMLReaderThread - still running....")
-        time.sleep(10)
-
-    logger.info("XMLReaderThread - Thread ends")
-
-@app.route( "/" )
-def index():
-    return render_template( "index.html" )
-
-@app.route( "/ircorners" )
-def ircorners():
-    return jsonify( {"turnname": state.current_corner} )
-
+        if k == '1':
+            state.cur_starts_at = state.cur_pct
+            state.cur_turn_number += 1
+        if k == '2':
+            state.cur_ends_at = state.cur_pct
+            state.all_turns_list.append('    <turn number="%s" starts_at="%s" ends_at="%s" name=""/>' % (state.cur_turn_number, state.cur_starts_at, state.cur_ends_at))
+            #print('    <turn number="%s" starts_at="%s" ends_at="%s" name=""/>' % (state.cur_turn_number, state.cur_starts_at, state.cur_ends_at))
+        if k == '3':
+            print('<?xml version="1.0" encoding="UTF-8" ?>')
+            print('<!-- %s - %s -->' % (state.current_track_name, state.current_track_id))
+            print('<track>')
+            for i in state.all_turns_list:
+                print(i)
+            print('</track>')
+            state.cur_turn_number = 0
+        #return False  # stop listener; remove this if want more keys
 
 if __name__ == "__main__":
+    listener = keyboard.Listener(on_press=on_press)
     # initialize our State class
     state = State()
     # initialize IRSDK
@@ -191,19 +153,22 @@ if __name__ == "__main__":
     stop_threads = False
 
     iRacingThread = Thread(target=iracingworker, args=(lambda: stop_threads, ))
-    webserverThread = Thread(target=startWebServer)
-    #Thread(target=webserverworker, args=(lambda: stop_threads, ))
-    xmlReaderThread = Thread(target=xmlreaderworker, args=(lambda: stop_threads, ))
+    #webserverThread = Thread(target=startWebServer)
+    #xmlReaderThread = Thread(target=xmlreaderworker, args=(lambda: stop_threads, ))
 
     iRacingThread.start()
-    webserverThread.start()
-    xmlReaderThread.start()
+    #webserverThread.start()
+    #xmlReaderThread.start()
+    listener.start()  # start to listen on a separate thread
 
     input("any key to end\n")
     stop_threads = True
 
     iRacingThread.join()
-    webserverThread.join()
-    xmlReaderThread.join()
+    #webserverThread.join()
+    #xmlReaderThread.join()
+    listener.join()  # remove if main thread is polling self.keys
 
     logger.info("iRcorner - Programm finished....")
+
+

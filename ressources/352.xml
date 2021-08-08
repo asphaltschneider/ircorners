@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Lime Rock Park - Classic -->
 <track>
-    <turn number="1" starts_at="0.8645802736282349" ends_at="0.08729775995016098" name="Sam Posey Straight"/>
+    <turn number="1" starts_at="0" ends_at="0.08729775995016098" name="Sam Posey Straight"/>
     <turn number="2" starts_at="0.09420161694288254" ends_at="0.20412391424179077" name="Big Bend"/>
     <turn number="3" starts_at="0.23983201384544373" ends_at="0.30834731459617615" name="Lefthander"/>
     <turn number="4" starts_at="0.3209974765777588" ends_at="0.3609934449195862" name="Righthander"/>
@@ -9,4 +9,5 @@
     <turn number="6" starts_at="0.5024076104164124" ends_at="0.5835365653038025" name="Uphill"/>
     <turn number="7" starts_at="0.6532472372055054" ends_at="0.7264188528060913" name="West Bend"/>
     <turn number="8" starts_at="0.7450361251831055" ends_at="0.8387663960456848" name="Downhill"/>
+    <turn number="9" starts_at="0.8645802736282349" ends_at="1" name="Sam Posey Straight"/>
 </track>
