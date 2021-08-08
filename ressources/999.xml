@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Example Track 1 - Short -->
+<track>
+    <turn number="1" starts_at="0.10000" ends_at="0.10010" name="First Corner"/>
+    <turn number="2" starts_at="0.20250" ends_at="0.21000" name="Second Corner"/>
+</track>

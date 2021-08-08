@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- summit summit raceway school - 159 -->
+<track>
+    <turn number="1" starts_at="0.15238314867019653" ends_at="0.21624508500099182" name="The Loop"/>
+    <turn number="2" starts_at="0.32365602254867554" ends_at="0.38386932015419006" name="Wagon Bend"/>
+    <turn number="3" starts_at="0.46516746282577515" ends_at="0.49577364325523376" name="The Chute"/>
+    <turn number="4" starts_at="0.5172837972640991" ends_at="0.5486734509468079" name="Ev Gardner Turn"/>
+    <turn number="5" starts_at="0.564078152179718" ends_at="0.6334885358810425" name="Carousel"/>
+    <turn number="6" starts_at="0.8345971703529358" ends_at="0.8993078470230103" name="Paddock Bend"/>
+</track>
