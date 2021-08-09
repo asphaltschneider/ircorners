@@ -31,10 +31,23 @@ jobs:
       
       - run: mkdir -p ressources
 
-      - name: PyInstaller Windows
+      - name: PyInstaller Windows iRcorners
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
           path: src
+          spec: src/ircorners.spec
+
+      - name: PyInstaller Windows Trackbuilder
+        uses: JackMcKew/pyinstaller-action-windows@main
+        with:
+          path: src
+          spec: src/trackbuilder.spec
+
+      - name: Copy ressources/ folder
+        run: cp -r src/ressources/ src/dist/windows/
+
+      - name: Copy templates/ folder
+        run: cp -r src/templates/ src/dist/windows/
 
       - uses: actions/upload-artifact@v2
         with:
@@ -45,13 +58,3 @@ jobs:
         with:
           name: iRCorners
           path: src/ircorners.cfg
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: iRCorners
-          path: src/ressources/
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: iRCorners
-          path: src/templates/
