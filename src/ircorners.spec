@@ -2,7 +2,7 @@
 
 block_cipher = None
 
-a = Analysis(['ircorners.py', 'trackbuilder.py'],
+a = Analysis(['ircorners.py'],
              pathex=['C:\\Users\\akira\\Documents\\Repositories\\ircorners\\venv\\lib\\site-packages'],
              binaries=[],
              datas=[],
@@ -22,7 +22,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='iRTCPR',
+          name='ircorners',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
