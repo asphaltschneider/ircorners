@@ -30,12 +30,12 @@ jobs:
       - name: PyInstaller Windows
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
-          path: src/ircorners.py
+          file: src/ircorners.py
 
       - name: PyInstaller Windows
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
-          path: src/trackbuilder.py
+          file: src/trackbuilder.py
 
       - uses: actions/upload-artifact@v2
         with:
