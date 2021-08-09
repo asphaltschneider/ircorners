@@ -26,16 +26,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      - run: mkdir -p templates
+      
+      - run: mkdir -p ressources
 
       - name: PyInstaller Windows
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
-          file: src/ircorners.py
-
-      - name: PyInstaller Windows
-        uses: JackMcKew/pyinstaller-action-windows@main
-        with:
-          file: src/trackbuilder.py
+          path: src
 
       - uses: actions/upload-artifact@v2
         with:
@@ -50,9 +49,9 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: iRCorners
-          path: src/ressources
+          path: src/ressources/
 
       - uses: actions/upload-artifact@v2
         with:
           name: iRCorners
-          path: src/templates
+          path: src/templates/
