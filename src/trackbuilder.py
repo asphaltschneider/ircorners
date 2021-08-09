@@ -53,7 +53,11 @@ else:
 
         logger.info("config has been read.")
         logger.info("---------------------------------------------")
-
+        logger.info("1. start an iRacing test session")
+        logger.info("2. press the '1' key to mark the start of a nameable section")
+        logger.info("3. press the '2' key to mark the end of the nameable section")
+        logger.info("4. after finishing the lap, press the '3' key, to generate the xml")
+        logger.info("---------------------------------------------")
 
 def check_iracing():
     if state.ir_connected and not (ir.is_initialized and ir.is_connected):
@@ -153,20 +157,14 @@ if __name__ == "__main__":
     stop_threads = False
 
     iRacingThread = Thread(target=iracingworker, args=(lambda: stop_threads, ))
-    #webserverThread = Thread(target=startWebServer)
-    #xmlReaderThread = Thread(target=xmlreaderworker, args=(lambda: stop_threads, ))
 
     iRacingThread.start()
-    #webserverThread.start()
-    #xmlReaderThread.start()
     listener.start()  # start to listen on a separate thread
 
     input("any key to end\n")
     stop_threads = True
 
     iRacingThread.join()
-    #webserverThread.join()
-    #xmlReaderThread.join()
     listener.join()  # remove if main thread is polling self.keys
 
     logger.info("iRcorner - Programm finished....")

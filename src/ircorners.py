@@ -7,12 +7,6 @@ from threading import Thread
 from flask import Flask, render_template, jsonify
 import untangle
 
-#import asyncio
-#import datetime
-#import random
-#import websockets
-#from aiohttp import web
-#import aiohttp_jinja2
 
 SCRIPTNAME = "iRcorners"
 CONFIG_FILE = "ircorners.cfg"
@@ -132,7 +126,7 @@ def webserverworker(stop):
 def xmlreaderworker(stop):
     logger.info("XMLReaderThread - Thread starts")
     logger.info("XMLReaderThread - Reading all_tracks.xml")
-    all_tracks = untangle.parse('../ressources/all_tracks.xml')
+    all_tracks = untangle.parse('ressources/all_tracks.xml')
     # print(all_tracks.all_tracks.track)
     all_track_ids = []
     for i in all_tracks.all_tracks.track:
@@ -147,7 +141,7 @@ def xmlreaderworker(stop):
                 logger.info("XMLReaderThread - Yes! ID %s is supported. Loading the XML..." % (state.current_track_id))
                 filename = str(state.current_track_id) + ".xml"
                 print("XML: %s" % (filename,))
-                current_track = untangle.parse('../ressources/' + filename)
+                current_track = untangle.parse('ressources/' + filename)
                 print(current_track.track.turn)
                 turn_dict = {}
                 turn_list =[]
