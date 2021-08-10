@@ -121,26 +121,47 @@ def on_press(key):
         k = key.char  # single-char keys
     except:
         k = key.name  # other keys
-
+    logger.info("noticed a key press")
     if k in ['1', '2', '3']:  # keys of interest
         # self.keys.append(k)  # store it in global-like variable
         #print('Key pressed: %s at %s' % (k, state.cur_pct))
 
         if k == '1':
+            logger.info("start part at %s" % (state.cur_pct))
             state.cur_starts_at = state.cur_pct
             state.cur_turn_number += 1
         if k == '2':
+            logger.info("end part at %s" % (state.cur_pct))
             state.cur_ends_at = state.cur_pct
-            state.all_turns_list.append('    <turn number="%s" starts_at="%s" ends_at="%s" name=""/>' % (state.cur_turn_number, state.cur_starts_at, state.cur_ends_at))
+            state.all_turns_list.append('    <turn number="%s" starts_at="%s" ends_at="%s" name="Part%s"/>' %
+                                        (state.cur_turn_number,
+                                         state.cur_starts_at,
+                                         state.cur_ends_at,
+                                         state.cur_turn_number))
             #print('    <turn number="%s" starts_at="%s" ends_at="%s" name=""/>' % (state.cur_turn_number, state.cur_starts_at, state.cur_ends_at))
         if k == '3':
-            print('<?xml version="1.0" encoding="UTF-8" ?>')
-            print('<!-- %s - %s -->' % (state.current_track_name, state.current_track_id))
-            print('<track>')
+            state.all_turns_list.insert(0, '<track>')
+            state.all_turns_list.insert(0, '<!-- %s - %s -->' % (state.current_track_name, state.current_track_id))
+            state.all_turns_list.insert(0, '<?xml version="1.0" encoding="UTF-8" ?>')
+            state.all_turns_list.append('</track>')
             for i in state.all_turns_list:
                 print(i)
-            print('</track>')
             state.cur_turn_number = 0
+            print("-----------------------------------------------")
+            print("check if xml already exists...")
+            tmp_filename = 'ressources/' + str(state.current_track_id) + '.xml'
+            if os.path.isfile(tmp_filename):
+                print('file already exists: %s' % (tmp_filename))
+                print('will NOT overwrite file....')
+            else:
+                print('saving xml as: %s' % (tmp_filename))
+                with open(tmp_filename, 'w') as f:
+                    for i in state.all_turns_list:
+                        f.write(i + "\n")
+                    f.close()
+
+                print("writing xml to disc.... done.")
+
         #return False  # stop listener; remove this if want more keys
 
 if __name__ == "__main__":
