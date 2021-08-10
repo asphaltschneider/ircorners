@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- oran northa - 209 -->
+<track>
+    <turn number="1" starts_at="0.054871104657649994" ends_at="0.11235111206769943" name="Champion Curve"/>
+    <turn number="2" starts_at="0.17905199527740479" ends_at="0.2650061547756195" name="Dunlop Bridge"/>
+    <turn number="3" starts_at="0.3750961422920227" ends_at="0.48611077666282654" name="Coca-Cola Corner"/>
+    <turn number="4" starts_at="0.8713647723197937" ends_at="0.936667799949646" name="Shell Corner"/>
+</track>
