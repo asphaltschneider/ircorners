@@ -27,10 +27,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - run: mkdir -p templates
-      
-      - run: mkdir -p ressources
-
       - name: PyInstaller Windows iRcorners
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
@@ -48,6 +44,9 @@ jobs:
 
       - name: Copy templates/ folder
         run: cp -r src/templates/ src/dist/windows/
+
+      - name: Copy duplicates/ folder
+        run: cp -r src/duplicates/ src/dist/windows/
 
       - uses: actions/upload-artifact@v2
         with:
