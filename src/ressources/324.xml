@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- tsukuba 2kfull - 324 -->
+<track>
+    <turn number="1" starts_at="0" ends_at="0.080" name="Main Straight"/>
+    <turn number="2" starts_at="0.08518750220537186" ends_at="0.16430188715457916" name="First Corner"/>
+    <turn number="3" starts_at="0.19884991645812988" ends_at="0.2680588662624359" name="S Corner"/>
+    <turn number="4" starts_at="0.2823743522167206" ends_at="0.33400723338127136" name="Hairpin #1"/>
+    <turn number="5" starts_at="0.37703031301498413" ends_at="0.4235984981060028" name="Dunlop Corner"/>
+    <turn number="6" starts_at="0.44777360558509827" ends_at="0.4972608983516693" name="80R Corner"/>
+    <turn number="7" starts_at="0.563438892364502" ends_at="0.6304700374603271" name="Hairpin #2"/>
+    <turn number="8" starts_at="0.6305" ends_at="0.8196" name="Back Straight"/>
+    <turn number="9" starts_at="0.8197104334831238" ends_at="0.961799144744873" name="Final Corner"/>
+    <turn number="10" starts_at="0.962" ends_at="1" name="Main Straight"/>
+</track>

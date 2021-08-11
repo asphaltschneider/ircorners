@@ -12,6 +12,8 @@ SCRIPTNAME = "iRcorners"
 CONFIG_FILE = "ircorners.cfg"
 
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 
 class State:
@@ -70,6 +72,7 @@ def check_iracing():
         state.ir_connected = True
         logger.info('iRacing - irsdk connected')
 
+
 def iracingworker(stop):
     logger.info("iRacingWorker - Thread starts")
 
@@ -112,32 +115,32 @@ def startWebServer():
     logger.info("WebServerWorker - Thread ends")
 
 
-def webserverworker(stop):
-    logger.info("WebServerWorker - Thread starts")
-    logger.info("WebServerWorker - Bind to IP: %s and Port: %s" % (config["HTTP_IP"], config["HTTP_PORT"], ))
-    if config["HTTP_ENABLED"] == True:
-        while not stop():
-            logger.info("WebServerWorker - still running....")
-            time.sleep(10)
-    else:
-        logger.info("WebServerWorker - configured to be disabled. Finish Thread...")
-    logger.info("WebServerWorker - Thread ends")
+def walk_ressources_folder():
+    logger.info("XMLReaderThread - walk_ressources_folder - Walking through the ressources folder")
+    all_track_ids = []
+    all_xml = [f for f in os.listdir('ressources/') if os.path.isfile(os.path.join('ressources/', f))]
+    for filename in all_xml:
+        tmp_track_id = filename.split('.')[0]
+        all_track_ids.append(int(tmp_track_id))
+
+    logger.info("XMLReaderThread - walk_ressources_folder - Supported Track Count: %s" % (len(all_track_ids)))
+    #logger.info("XMLReaderThread - walk_ressources_folder - %s" % (all_track_ids))
+
+    state.all_track_ids = all_track_ids
+
 
 def xmlreaderworker(stop):
     logger.info("XMLReaderThread - Thread starts")
-    logger.info("XMLReaderThread - Reading all_tracks.xml")
-    all_tracks = untangle.parse('ressources/all_tracks.xml')
-    # print(all_tracks.all_tracks.track)
-    all_track_ids = []
-    for i in all_tracks.all_tracks.track:
-        all_track_ids.append(int(i["id"]))
-        logger.info("id: %s name: %s layout: %s" % (i["id"], i["name"], i["layout"], ))
-    state.all_track_ids = all_track_ids
+
+    walk_ressources_folder()
+
     lasttrackid = state.current_track_id
+
+    refresh_ressources = 1
     while not stop():
         if state.current_track_id != lasttrackid:
             logger.info("XMLReaderThread - The trackID changed. Is there a XML for trackID %s ?" % (state.current_track_id, ))
-            if state.current_track_id in all_track_ids:
+            if state.current_track_id in state.all_track_ids:
                 logger.info("XMLReaderThread - Yes! ID %s is supported. Loading the XML..." % (state.current_track_id))
                 filename = str(state.current_track_id) + ".xml"
                 print("XML: %s" % (filename,))
@@ -157,11 +160,19 @@ def xmlreaderworker(stop):
 
             else:
                 logger.info("XMLReaderThread - No! ID %s is not yet supported." % (state.current_track_id))
+                if refresh_ressources == 6:
+                    logger.info("XMLReaderThread - Refresh Supported Tracks")
+                    walk_ressources_folder()
+                    refresh_ressources = 1
+                else:
+                    refresh_ressources += 1
+
         lasttrackid = int(state.current_track_id)
         logger.info("XMLReaderThread - still running....")
         time.sleep(10)
 
     logger.info("XMLReaderThread - Thread ends")
+
 
 @app.route( "/" )
 def index():
@@ -186,7 +197,6 @@ if __name__ == "__main__":
 
     iRacingThread = Thread(target=iracingworker, args=(lambda: stop_threads, ))
     webserverThread = Thread(target=startWebServer)
-    #Thread(target=webserverworker, args=(lambda: stop_threads, ))
     xmlReaderThread = Thread(target=xmlreaderworker, args=(lambda: stop_threads, ))
 
     iRacingThread.start()
