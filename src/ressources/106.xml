@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- watkinsglen cupcircuit - 106 -->
+<track>
+    <turn number="1" starts_at="0.05766335502266884" ends_at="0.12665832042694092" name="The 90"/>
+    <turn number="2" starts_at="0.16050167381763458" ends_at="0.35135436058044434" name="Esses"/>
+    <turn number="3" starts_at="0.36882898211479187" ends_at="0.4581548571586609" name="Back Straight"/>
+    <turn number="4" starts_at="0.4716412425041199" ends_at="0.5450114011764526" name="Inner Loop"/>
+    <turn number="5" starts_at="0.5497910976409912" ends_at="0.6538844108581543" name="Outer Loop"/>
+</track>

@@ -153,6 +153,17 @@ def on_press(key):
             if os.path.isfile(tmp_filename):
                 print('file already exists: %s' % (tmp_filename))
                 print('will NOT overwrite file....')
+                print('trying to save a duplicate file to duplicates folder')
+                dupl_number = 1
+                tmp_dupl_filename = 'duplicates/duplicate_' + str(dupl_number) + '_' + str(state.current_track_id) + '.xml'
+                while os.path.isfile(tmp_dupl_filename):
+                    dupl_number += 1
+                    tmp_dupl_filename = 'duplicates/duplicate_' + str(dupl_number) + '_' + str(state.current_track_id) + '.xml'
+                print('will save to %s' % (tmp_dupl_filename))
+                with open(tmp_filename, 'w') as f:
+                    for i in state.all_turns_list:
+                        f.write(i + "\n")
+                    f.close()
             else:
                 print('saving xml as: %s' % (tmp_filename))
                 with open(tmp_filename, 'w') as f:

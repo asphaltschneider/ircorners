@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!-- Every supported iracing road track should be predefined in here -->
-<all_tracks>
-    <track id="999" name="Example Track 1" layout="Short"/>
-    <track id="352" name="Lime Rock Park" layout="Classic"/>
-    <track id="9" name="Summit Point Raceway" layout=""/>
-    <track id="159" name="Summit Point Raceway School" layout=""/>
-    <track id="209" name="Oran Park North A" layout=""/>
-</all_tracks>
