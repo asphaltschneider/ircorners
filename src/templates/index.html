@@ -4,9 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>irCorners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap" rel="stylesheet">
+  <style>
+   .cornerbox {
+      width: 290px;
+      height: 30px;
+      padding: 2px 0;
+      border: 1px solid white;
+      background-color:rgb(31,79,190);
+      opacity:1;
+      text-align: center;
+      vertical-align: middle;
+      padding: 70px 0;
+   }
+
+   .corner {
+      background-color:rgb(31,79,190);
+      padding: 0px;
+      color: white;
+      font-family: 'Teko', sans-serif;
+      font-size: 20pt
+
+   }
+   table {
+    border-collapse: collapse;
+    width: 400px;
+   }
+
+   td {
+    background-color: #1f4fbe;
+    color: white
+    text-align: left;
+    padding: 0px;
+    color: white;
+    font-family: 'Teko', sans-serif;
+    font-size: 18pt
+   }
+  </style>
  </head>
  <body>
-  <p><span id="turnname"></span> </p>
+  <table>
+   <tr>
+    <td>&nbsp;</td>
+    <td id="trackname"></td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td id="trackgeo"></td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td id="turnname"></td>
+    <td>&nbsp;</td>
+   </tr>
+  </table>
   <script>
    function updateTurn()
    {
@@ -17,8 +72,10 @@
 
             return response.json() ;
          } )
-         .then( json => document.querySelector("#turnname").textContent = json.turnname )
-         .catch( error => alert(error) ) ;
+         .then( json => { document.querySelector("#turnname").textContent = json.turnname;
+                          document.querySelector("#trackname").textContent = json.trackname;
+                          document.querySelector("#trackgeo").textContent = json.trackgeo; })
+         // .catch( error => alert(error) ) ;
    }
 
    updateTurn() ;
