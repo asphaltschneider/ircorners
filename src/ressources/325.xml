@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- tsukuba 2kchicane - 325 -->
+<track>
+    <turn number="1" starts_at="0" ends_at="0.07382173836231232" name="Main Straight"/>
+    <turn number="2" starts_at="0.07968595623970032" ends_at="0.15866149961948395" name="First Corner"/>
+    <turn number="3" starts_at="0.19625726342201233" ends_at="0.2674064338207245" name="S Corner"/>
+    <turn number="4" starts_at="0.27296963334083557" ends_at="0.331443727016449" name="Hairpin #1"/>
+    <turn number="5" starts_at="0.37712135910987854" ends_at="0.4112465977668762" name="Dunlop Corner"/>
+    <turn number="6" starts_at="0.4148707985877991" ends_at="0.45216506719589233" name="Moto Chicane"/>
+    <turn number="7" starts_at="0.456327885389328" ends_at="0.5364242792129517" name="80R Corner"/>
+    <turn number="8" starts_at="0.5724256634712219" ends_at="0.6190977692604065" name="Hairpin #2"/>
+    <turn number="9" starts_at="0.6292814016342163" ends_at="0.8203616142272949" name="Back Straight"/>
+    <turn number="10" starts_at="0.8548604249954224" ends_at="0.9331897497177124" name="Final Corner"/>
+    <turn number="11" starts_at="0.9486692547798157" ends_at="1" name="Main Straight"/>
+</track>

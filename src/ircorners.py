@@ -20,7 +20,9 @@ class State:
     ir_connected = False
     current_track_id = -1
     current_track_name = ""
+    current_track_geo = ""
     current_track_layout = ""
+    lastmoditime = ""
     current_corner = ""
     corner_list = []
     all_track_ids = []
@@ -66,6 +68,9 @@ def check_iracing():
         state.last_car_setup_tick = -1
         # we are shutting down ir library (clearing all internal variables)
         ir.shutdown()
+        state.current_track_id = ""
+        state.current_track_name = ""
+        state.current_track_geo = ""
         logger.info('iRacing - irsdk disconnected')
 
     elif not state.ir_connected and ir.startup() and ir.is_initialized and ir.is_connected:
@@ -93,7 +98,9 @@ def iracingworker(stop):
             ir.freeze_var_buffer_latest()
             if ir["WeekendInfo"]["TrackID"] != state.current_track_id:
                 state.current_track_id = ir["WeekendInfo"]["TrackID"]
-            logger.info("TrackID: %s - Corner: '%s' - Dist: %s - Percent: %s" % (ir["WeekendInfo"]["TrackID"], state.current_corner, ir["LapDist"], float(ir["LapDistPct"])))
+                state.current_track_name = ir["WeekendInfo"]["TrackDisplayShortName"]
+                state.current_track_geo = ir["WeekendInfo"]["TrackCity"] + ", " + ir["WeekendInfo"]["TrackCountry"]
+            #logger.info("TrackID: %s - Corner: '%s' - Dist: %s - Percent: %s" % (ir["WeekendInfo"]["TrackID"], state.current_corner, ir["LapDist"], float(ir["LapDistPct"])))
             found = 0
             #print(state.corner_list)
             for i in state.corner_list:
@@ -129,6 +136,23 @@ def walk_ressources_folder():
     state.all_track_ids = all_track_ids
 
 
+def load_corner_xml(filename):
+    logger.info("XMLReaderThread - load_corner_xml - loading XML: %s" % (filename,))
+    state.lastmoditime = os.path.getmtime('ressources/' + filename)
+    current_track = untangle.parse('ressources/' + filename)
+    #print(current_track.track.turn)
+    turn_dict = {}
+    turn_list = []
+    for i in current_track.track.turn:
+        #print(i)
+        turn_dict['starts_at'] = i['starts_at']
+        turn_dict['ends_at'] = i['ends_at']
+        turn_dict['name'] = i['name']
+        turn_list.append(turn_dict)
+        turn_dict = {}
+    state.corner_list = turn_list
+    logger.info("XMLReaderThread - load_corner_xml - done")
+
 def xmlreaderworker(stop):
     logger.info("XMLReaderThread - Thread starts")
 
@@ -143,30 +167,23 @@ def xmlreaderworker(stop):
             if state.current_track_id in state.all_track_ids:
                 logger.info("XMLReaderThread - Yes! ID %s is supported. Loading the XML..." % (state.current_track_id))
                 filename = str(state.current_track_id) + ".xml"
-                print("XML: %s" % (filename,))
-                current_track = untangle.parse('ressources/' + filename)
-                print(current_track.track.turn)
-                turn_dict = {}
-                turn_list =[]
-                for i in current_track.track.turn:
-                    print(i)
-                    turn_dict['starts_at'] = i['starts_at']
-                    turn_dict['ends_at'] = i['ends_at']
-                    turn_dict['name'] = i['name']
-                    turn_list.append(turn_dict)
-                    turn_dict = {}
-                state.corner_list = turn_list
+                load_corner_xml(filename)
+
 
 
             else:
                 logger.info("XMLReaderThread - No! ID %s is not yet supported." % (state.current_track_id))
-                if refresh_ressources == 6:
-                    logger.info("XMLReaderThread - Refresh Supported Tracks")
-                    walk_ressources_folder()
-                    refresh_ressources = 1
-                else:
-                    refresh_ressources += 1
-
+        if refresh_ressources == 6:
+            logger.info("XMLReaderThread - Refresh Supported Tracks")
+            walk_ressources_folder()
+            refresh_ressources = 1
+        else:
+            refresh_ressources += 1
+        if state.current_track_id in state.all_track_ids:
+            filename = str(state.current_track_id) + ".xml"
+            if state.lastmoditime != os.path.getmtime('ressources/' + filename):
+                load_corner_xml(filename)
+                state.lastmoditime = os.path.getmtime('ressources/' + filename)
         lasttrackid = int(state.current_track_id)
         logger.info("XMLReaderThread - still running....")
         time.sleep(10)
@@ -180,7 +197,9 @@ def index():
 
 @app.route( "/ircorners" )
 def ircorners():
-    return jsonify( {"turnname": state.current_corner} )
+    return jsonify({"turnname": state.current_corner,
+                    "trackname": state.current_track_name,
+                    "trackgeo": state.current_track_geo, })
 
 
 if __name__ == "__main__":
