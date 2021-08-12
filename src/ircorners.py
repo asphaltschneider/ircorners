@@ -68,7 +68,7 @@ def check_iracing():
         state.last_car_setup_tick = -1
         # we are shutting down ir library (clearing all internal variables)
         ir.shutdown()
-        state.current_track_id = ""
+        state.current_track_id = -1
         state.current_track_name = ""
         state.current_track_geo = ""
         logger.info('iRacing - irsdk disconnected')
@@ -184,7 +184,9 @@ def xmlreaderworker(stop):
             if state.lastmoditime != os.path.getmtime('ressources/' + filename):
                 load_corner_xml(filename)
                 state.lastmoditime = os.path.getmtime('ressources/' + filename)
-        lasttrackid = int(state.current_track_id)
+
+        if state.current_track_id != -1:
+            lasttrackid = int(state.current_track_id)
         logger.info("XMLReaderThread - still running....")
         time.sleep(10)
 
