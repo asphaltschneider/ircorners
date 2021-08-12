@@ -57,3 +57,8 @@ jobs:
         with:
           name: iRCorners
           path: src/ircorners.cfg
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: iRCorners
+          path: README.md
