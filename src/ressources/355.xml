@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- limerock 2019 chicanewestb - 355 -->
+<track>
+    <turn number="1" starts_at="0" ends_at="0.06421393156051636" name="Sam Posey Straight"/>
+    <turn number="2" starts_at="0.08145742863416672" ends_at="0.19792570173740387" name="Big Bend"/>
+    <turn number="3" starts_at="0.23325441777706146" ends_at="0.29752516746520996" name="Lefthander"/>
+    <turn number="4" starts_at="0.31192636489868164" ends_at="0.35079896450042725" name="Righthander"/>
+    <turn number="5" starts_at="0.39647015929222107" ends_at="0.47273683547973633" name="No Name Straight"/>
+    <turn number="6" starts_at="0.49194100499153137" ends_at="0.572235643863678" name="Uphill"/>
+    <turn number="7" starts_at="0.6415125131607056" ends_at="0.7301322817802429" name="West Bend"/>
+    <turn number="8" starts_at="0.7458887696266174" ends_at="0.8483242392539978" name="Downhill"/>
+    <turn number="9" starts_at="0.8551595211029053" ends_at="1" name="Sam Posey Straight"/>
+</track>

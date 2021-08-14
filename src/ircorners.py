@@ -162,32 +162,33 @@ def xmlreaderworker(stop):
 
     refresh_ressources = 1
     while not stop():
-        if state.current_track_id != lasttrackid:
-            logger.info("XMLReaderThread - The trackID changed. Is there a XML for trackID %s ?" % (state.current_track_id, ))
-            if state.current_track_id in state.all_track_ids:
-                logger.info("XMLReaderThread - Yes! ID %s is supported. Loading the XML..." % (state.current_track_id))
-                filename = str(state.current_track_id) + ".xml"
-                load_corner_xml(filename)
-
-
-
-            else:
-                logger.info("XMLReaderThread - No! ID %s is not yet supported." % (state.current_track_id))
-        if refresh_ressources == 6:
-            logger.info("XMLReaderThread - Refresh Supported Tracks")
-            walk_ressources_folder()
-            refresh_ressources = 1
-        else:
-            refresh_ressources += 1
-        if state.current_track_id in state.all_track_ids:
-            filename = str(state.current_track_id) + ".xml"
-            if state.lastmoditime != os.path.getmtime('ressources/' + filename):
-                load_corner_xml(filename)
-                state.lastmoditime = os.path.getmtime('ressources/' + filename)
-
         if state.current_track_id != -1:
-            lasttrackid = int(state.current_track_id)
-        logger.info("XMLReaderThread - still running....")
+            if state.current_track_id != lasttrackid:
+                logger.info("XMLReaderThread - The trackID changed. Is there a XML for trackID %s ?" % (state.current_track_id, ))
+                if state.current_track_id in state.all_track_ids:
+                    logger.info("XMLReaderThread - Yes! ID %s is supported. Loading the XML..." % (state.current_track_id))
+                    filename = str(state.current_track_id) + ".xml"
+                    load_corner_xml(filename)
+
+
+
+                else:
+                    logger.info("XMLReaderThread - No! ID %s is not yet supported." % (state.current_track_id))
+            if refresh_ressources == 6:
+                logger.info("XMLReaderThread - Refresh Supported Tracks")
+                walk_ressources_folder()
+                refresh_ressources = 1
+            else:
+                refresh_ressources += 1
+            if state.current_track_id in state.all_track_ids:
+                filename = str(state.current_track_id) + ".xml"
+                if state.lastmoditime != os.path.getmtime('ressources/' + filename):
+                    load_corner_xml(filename)
+                    state.lastmoditime = os.path.getmtime('ressources/' + filename)
+
+            if state.current_track_id != -1:
+                lasttrackid = int(state.current_track_id)
+            logger.info("XMLReaderThread - still running....")
         time.sleep(10)
 
     logger.info("XMLReaderThread - Thread ends")

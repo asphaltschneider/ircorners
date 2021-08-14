@@ -27,10 +27,12 @@ iRCorners will pick up the changed or added xml without a restart.
 
 the prepared xml is now shown inside the console.
 
-## supported tracks
+## current supported tracks
 - Lime Rock Park Classic
 - Lime Rock Park Chicanes
-- Oran Park North A
+- Lime Rock Park West Bend Chicane
+- Oran Park Raceway North A
+- Oran Park Raceway South
 - Summit Point Raceway
 - Summit Point Raceway School
 - Tsukuba 2000 Full

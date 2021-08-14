@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- oran south - 208 -->
+<track>
+    <turn number="1" starts_at="0.31736183166503906" ends_at="0.38386014103889465" name="Foster's Dip"/>
+    <turn number="2" starts_at="0.47111189365386963" ends_at="0.5529715418815613" name="Momo Corner"/>
+    <turn number="3" starts_at="0.6249220371246338" ends_at="0.7211782336235046" name="O'Brien Aluminium Dogleg"/>
+    <turn number="4" starts_at="0.7786917090415955" ends_at="0.8759226202964783" name="Recaro Corner"/>
+</track>
