@@ -121,7 +121,7 @@ def on_press(key):
         k = key.char  # single-char keys
     except:
         k = key.name  # other keys
-    logger.info("noticed a key press")
+    #logger.info("noticed a key press")
     if k in ['1', '2', '3']:  # keys of interest
         # self.keys.append(k)  # store it in global-like variable
         #print('Key pressed: %s at %s' % (k, state.cur_pct))
@@ -160,7 +160,7 @@ def on_press(key):
                     dupl_number += 1
                     tmp_dupl_filename = 'duplicates/duplicate_' + str(dupl_number) + '_' + str(state.current_track_id) + '.xml'
                 print('will save to %s' % (tmp_dupl_filename))
-                with open(tmp_filename, 'w') as f:
+                with open(tmp_dupl_filename, 'w') as f:
                     for i in state.all_turns_list:
                         f.write(i + "\n")
                     f.close()
