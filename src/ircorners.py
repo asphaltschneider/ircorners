@@ -98,7 +98,10 @@ def iracingworker(stop):
             ir.freeze_var_buffer_latest()
             if ir["WeekendInfo"]["TrackID"] != state.current_track_id:
                 state.current_track_id = ir["WeekendInfo"]["TrackID"]
-                state.current_track_name = ir["WeekendInfo"]["TrackDisplayName"] + " " + ir["WeekendInfo"]["TrackConfigName"]
+                if ir["WeekendInfo"]["TrackConfigName"]:
+                    state.current_track_name = ir["WeekendInfo"]["TrackDisplayName"] + " " + ir["WeekendInfo"]["TrackConfigName"]
+                else:
+                    state.current_track_name = ir["WeekendInfo"]["TrackDisplayName"]
                 state.current_track_geo = ir["WeekendInfo"]["TrackCity"] + ", " + ir["WeekendInfo"]["TrackCountry"]
             #logger.info("TrackID: %s - Corner: '%s' - Dist: %s - Percent: %s" % (ir["WeekendInfo"]["TrackID"], state.current_corner, ir["LapDist"], float(ir["LapDistPct"])))
             found = 0

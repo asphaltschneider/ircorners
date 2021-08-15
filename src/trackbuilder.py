@@ -22,6 +22,7 @@ class State:
     cur_turn_number = 0
     all_turns_list = []
     info_displayed = 0
+    corner_prefix = "T"
 
 # initate everything we need for thread safe logging to stdout
 logger = logging.getLogger(SCRIPTNAME)
@@ -133,10 +134,11 @@ def on_press(key):
         if k == '2':
             logger.info("end part at %s" % (state.cur_pct))
             state.cur_ends_at = state.cur_pct
-            state.all_turns_list.append('    <turn number="%s" starts_at="%s" ends_at="%s" name="Part%s"/>' %
+            state.all_turns_list.append('    <turn number="%s" starts_at="%s" ends_at="%s" name="%s%s"/>' %
                                         (state.cur_turn_number,
                                          state.cur_starts_at,
                                          state.cur_ends_at,
+                                         state.corner_prefix,
                                          state.cur_turn_number))
             #print('    <turn number="%s" starts_at="%s" ends_at="%s" name=""/>' % (state.cur_turn_number, state.cur_starts_at, state.cur_ends_at))
         if k == '3':
