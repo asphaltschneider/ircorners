@@ -35,6 +35,7 @@ the prepared xml is now shown inside the console.
 - Oran Park Raceway South
 - Summit Point Raceway
 - Summit Point Raceway School
+- Summit Point Raceway Jefferson
 - Tsukuba 2000 Full
 - Tsukuba 2000 Moto
 - Watkins Glen Cup
