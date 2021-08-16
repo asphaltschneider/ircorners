@@ -28,14 +28,18 @@ iRCorners will pick up the changed or added xml without a restart.
 the prepared xml is now shown inside the console.
 
 ## current supported tracks
+- Daytona Road Course
 - Lime Rock Park Classic
 - Lime Rock Park Chicanes
 - Lime Rock Park West Bend Chicane
 - Oran Park Raceway North A
 - Oran Park Raceway South
+- Oulton Park Circuit Intl. w/no chicanes
+- Silverstone Grand Prix
 - Summit Point Raceway
 - Summit Point Raceway School
 - Summit Point Raceway Jefferson
+- Suzuka International Grand Prix
 - Tsukuba 2000 Full
 - Tsukuba 2000 Moto
 - Watkins Glen Cup

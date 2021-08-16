@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- oulton intnochicane - 185 -->
+<track>
+    <turn number="1" starts_at="0.03904649242758751" ends_at="0.0898740142583847" name="Old Hall Corner"/>
+    <turn number="2" starts_at="0.090890376329422" ends_at="0.1458808034658432" name="The Avenue"/>
+    <turn number="3" starts_at="0.1459" ends_at="0.1628352850675583" name="Dentons"/>
+    <turn number="4" starts_at="0.16294460163116455" ends_at="0.2094563990831375" name="Cascades"/>
+    <turn number="5" starts_at="0.2253883183002472" ends_at="0.2848489582538605" name="Lakeside"/>
+    <turn number="6" starts_at="0.29614728689193726" ends_at="0.35489436984062195" name="Island Bend"/>
+    <turn number="7" starts_at="0.36981120705604553" ends_at="0.41497066617012024" name="Shell Oils Corner"/>
+    <turn number="8" starts_at="0.4983882009983063" ends_at="0.5452505946159363" name="Hill Top"/>
+    <turn number="9" starts_at="0.6139077544212341" ends_at="0.6610325574874878" name="Knickerbrook"/>
+    <turn number="10" starts_at="0.6825608015060425" ends_at="0.72557532787323" name="Clay Hill"/>
+    <turn number="11" starts_at="0.7701933979988098" ends_at="0.8377718329429626" name="Druids Corner"/>
+    <turn number="12" starts_at="0.8994892239570618" ends_at="0.9269353151321411" name="Lodge Corner"/>
+    <turn number="13" starts_at="0.9305914640426636" ends_at="0.9704939723014832" name="Deer Leap"/>
+</track>

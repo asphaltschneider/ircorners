@@ -177,6 +177,7 @@ def xmlreaderworker(stop):
 
                 else:
                     logger.info("XMLReaderThread - No! ID %s is not yet supported." % (state.current_track_id))
+                    state.corner_list = []
             if refresh_ressources == 6:
                 logger.info("XMLReaderThread - Refresh Supported Tracks")
                 walk_ressources_folder()
