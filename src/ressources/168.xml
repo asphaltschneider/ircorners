@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- suzuka grandprix - 168 -->
+<track>
+    <turn number="1" starts_at="0" ends_at="0.09581014513969421" name="Main Straight"/>
+    <turn number="2" starts_at="0.10342671722173691" ends_at="0.16483265161514282" name="1st and 2nd Curve"/>
+    <turn number="3" starts_at="0.1775018870830536" ends_at="0.24425703287124634" name="S Curve"/>
+    <turn number="4" starts_at="0.25002017617225647" ends_at="0.28464555740356445" name="Anti-Banked Curve"/>
+    <turn number="5" starts_at="0.2860310673713684" ends_at="0.3558070659637451" name="Dunlop Curve"/>
+    <turn number="6" starts_at="0.38558629155158997" ends_at="0.43938499689102173" name="Degner Curve"/>
+    <turn number="7" starts_at="0.4854413568973541" ends_at="0.5143832564353943" name="Hairpin Curve"/>
+    <turn number="8" starts_at="0.5265343189239502" ends_at="0.6203166246414185" name="200R"/>
+    <turn number="9" starts_at="0.639280378818512" ends_at="0.707561194896698" name="Spoon Curve"/>
+    <turn number="10" starts_at="0.7186158895492554" ends_at="0.8286512494087219" name="Back Stretch"/>
+    <turn number="11" starts_at="0.8396440744400024" ends_at="0.9037937521934509" name="130R"/>
+    <turn number="12" starts_at="0.9144543409347534" ends_at="0.9451012015342712" name="Casio Triangle"/>
+    <turn number="13" starts_at="0.9465380311012268" ends_at="0.9808534383773804" name="Last Curve"/>
+    <turn number="14" starts_at="0.9843857884407043" ends_at="1" name="Main Straight"/>
+</track>

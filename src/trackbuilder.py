@@ -116,8 +116,6 @@ def iracingworker(stop):
 
 
 def on_press(key):
-    if key == keyboard.Key.esc:
-        return False  # stop listener
     try:
         k = key.char  # single-char keys
     except:
@@ -174,6 +172,7 @@ def on_press(key):
                     f.close()
 
                 print("writing xml to disc.... done.")
+                state.cur_turn_number = 1
 
         #return False  # stop listener; remove this if want more keys
 

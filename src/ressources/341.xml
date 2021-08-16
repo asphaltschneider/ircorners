@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- silverstone 2019 gp - 341 -->
+<track>
+    <turn number="1" starts_at="0" ends_at="0.054658807814121246" name="Start/Finish"/>
+    <turn number="2" starts_at="0.05865592882037163" ends_at="0.09871063381433487" name="Abbey"/>
+    <turn number="3" starts_at="0.12624256312847137" ends_at="0.1893346905708313" name="Farm"/>
+    <turn number="4" starts_at="0.20" ends_at="0.22264890372753143" name="Village"/>
+    <turn number="5" starts_at="0.22264890372753143" ends_at="0.29518336057662964" name="Wellington Straight"/>
+    <turn number="6" starts_at="0.3031948506832123" ends_at="0.3503403067588806" name="Brooklands"/>
+    <turn number="7" starts_at="0.3558427691459656" ends_at="0.39680570363998413" name="Luffield"/>
+    <turn number="8" starts_at="0.40614810585975647" ends_at="0.45099854469299316" name="Woodcote"/>
+    <turn number="9" starts_at="0.5016273856163025" ends_at="0.5538312196731567" name="Copse"/>
+    <turn number="10" starts_at="0.5982834696769714" ends_at="0.6341966986656189" name="Maggotts"/>
+    <turn number="11" starts_at="0.6383211612701416" ends_at="0.6662276387214661" name="Becketts"/>
+    <turn number="12" starts_at="0.6696354150772095" ends_at="0.710283100605011" name="Chapel"/>
+    <turn number="13" starts_at="0.7233625054359436" ends_at="0.8317857384681702" name="Hangar Straight"/>
+    <turn number="14" starts_at="0.8378432393074036" ends_at="0.8924829363822937" name="Stowe"/>
+    <turn number="15" starts_at="0.9266472458839417" ends_at="0.9451941251754761" name="Vale"/>
+    <turn number="16" starts_at="0.9510303735733032" ends_at="0.9851592183113098" name="Club"/>
+    <turn number="17" starts_at="0.9851592183113098" ends_at="1" name="Start/Finish"/>
+</track>

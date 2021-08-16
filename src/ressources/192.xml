@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- daytona 2011 road - 192 -->
+<track>
+    <turn number="1" starts_at="0" ends_at="0.04604293033480644" name="Start/Finish"/>
+    <turn number="2" starts_at="0.04785250872373581" ends_at="0.0726870596408844" name="In and Out"/>
+    <turn number="3" starts_at="0.14757370948791504" ends_at="0.1909317970275879" name="International Horseshoe"/>
+    <turn number="4" starts_at="0.23211929202079773" ends_at="0.2675185203552246" name="Dogleg"/>
+    <turn number="5" starts_at="0.2779974639415741" ends_at="0.33025306463241577" name="West Horseshoe"/>
+    <turn number="6" starts_at="0.3542999029159546" ends_at="0.4069429934024811" name="In and Out"/>
+    <turn number="7" starts_at="0.6439530253410339" ends_at="0.7068343758583069" name="Bus Stop Chicane"/>
+    <turn number="8" starts_at="0.9569958448410034" ends_at="1" name="Start/Finish"/>
+</track>
