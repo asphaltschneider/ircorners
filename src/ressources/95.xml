@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- sebring international - 95 -->
+<track>
+    <turn number="1" starts_at="0.04594734311103821" ends_at="0.10995201766490936" name="Gendebien"/>
+    <turn number="2" starts_at="0.20935693383216858" ends_at="0.2841718792915344" name="Big Bend"/>
+    <turn number="3" starts_at="0.31461599469184875" ends_at="0.3504405617713928" name="Hairpin"/>
+    <turn number="4" starts_at="0.37990614771842957" ends_at="0.4171905219554901" name="Fangio"/>
+    <turn number="5" starts_at="0.4518658220767975" ends_at="0.48261621594429016" name="Cunningham"/>
+    <turn number="6" starts_at="0.4848535656929016" ends_at="0.5122498869895935" name="Collier"/>
+    <turn number="7" starts_at="0.5372180938720703" ends_at="0.5676827430725098" name="Tower"/>
+    <turn number="8" starts_at="0.6267793774604797" ends_at="0.6572109460830688" name="Bishop"/>
+    <turn number="9" starts_at="0.722067654132843" ends_at="0.7520008087158203" name="Le Mans"/>
+    <turn number="10" starts_at="0.7597306370735168" ends_at="0.8686832189559937" name="Ullman Straight"/>
+    <turn number="11" starts_at="0.8745295405387878" ends_at="0.9595758318901062" name="Sunset Bend"/>
+</track>

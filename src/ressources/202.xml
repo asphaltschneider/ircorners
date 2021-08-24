@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- oran gp - 202 -->
+<track>
+    <turn number="1" starts_at="0.1847667098045349" ends_at="0.25348836183547974" name="Coca-Cola Corner"/>
+    <turn number="2" starts_at="0.3225176930427551" ends_at="0.37166351079940796" name="Shell Corner"/>
+    <turn number="3" starts_at="0.40911805629730225" ends_at="0.45499077439308167" name="Champion Curve"/>
+    <turn number="4" starts_at="0.46961915493011475" ends_at="0.5363948941230774" name="Yokohama Bridge"/>
+    <turn number="5" starts_at="0.6010209321975708" ends_at="0.6575925946235657" name="Fosters Dip"/>
+    <turn number="6" starts_at="0.6761452555656433" ends_at="0.7195637226104736" name="Momo Corner"/>
+    <turn number="7" starts_at="0.7543615698814392" ends_at="0.8239850997924805" name="Dogleg"/>
+    <turn number="8" starts_at="0.8549946546554565" ends_at="0.9188156723976135" name="Recaro Corner"/>
+</track>
